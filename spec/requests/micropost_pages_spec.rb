@@ -20,6 +20,9 @@ describe "MicropostPages" do
     end
     
     describe "with valid information" do
+      describe "should eq count microposts" do
+    it  {should have_content("#{user.microposts.count}")}
+  end
       before {fill_in "micropost_content", with: "Lorem ipsum"}
       it "should create a micropost" do
         expect {click_button "Post"}.to change(Micropost, :count).by(1)
@@ -27,6 +30,7 @@ describe "MicropostPages" do
     end
   end
 
+  
   describe "micropost destruction" do
     before { FactoryGirl.create(:micropost, user: user) }
 
